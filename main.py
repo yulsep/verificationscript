@@ -16,10 +16,10 @@ def is_menu_valid(driver):
     """
     Verify that the menu opens and closes correctly.
     """
-    driver.find_element(By.CSS_SELECTOR, '.menu-toggle').click()
+    driver.find_element(By.CSS_SELECTOR, 'main-nav-dropdown').over()
     time.sleep(5)
-    is_displayed = driver.find_element_by_css_selector('.menu-list').is_displayed()
-    driver.find_element_by_css_selector('.close-menu').click()
+    is_displayed = driver.find_element('main-nav-dropdown').is_displayed()
+    driver.find_element('main-nav-dropdown').click()
     return is_displayed
 
 
@@ -46,7 +46,7 @@ def is_page_valid(driver, url):
     """
     Verify that internal pages are fully translated into Hindi.
     """
-    inner_links = driver.find_elements_by_css_selector('.card a')
+    inner_links = driver.find_element('a button')
     for i in range(min(5, len(inner_links))):
         inner_links[i].send_keys(Keys.CONTROL + Keys.RETURN)
         time.sleep(5)
@@ -93,7 +93,7 @@ def check_all_pages(url):
 
     # Click on some interior links and verify that they work.
     is_internal_pages_valid = True
-    inner_links = driver.find_elements_by_css_selector('.card a')
+    inner_links = driver.find_element('.card a')
     for i in range(min(5, len(inner_links))):
         inner_links[i].send_keys(Keys.CONTROL + Keys.RETURN)
         time.sleep(5)
